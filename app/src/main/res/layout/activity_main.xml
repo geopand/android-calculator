@@ -45,7 +45,7 @@
 
         <Button
             android:id="@+id/btnCE"
-            style="@style/buttonNumber"
+            style="@style/buttonOperations"
             android:text="CE" />
 
         <Button
@@ -83,7 +83,7 @@
 
         <Button
             android:id="@+id/btnMulti"
-            style="@style/buttonNumber"
+            style="@style/buttonOperations"
             android:text="X" />
     </LinearLayout>
 
@@ -108,7 +108,7 @@
 
         <Button
             android:id="@+id/btnMinus"
-            style="@style/buttonNumber"
+            style="@style/buttonOperations"
             android:text="-" />
     </LinearLayout>
 
@@ -133,7 +133,7 @@
 
         <Button
             android:id="@+id/btnPlus"
-            style="@style/buttonNumber"
+            style="@style/buttonOperations"
             android:text="+" />
     </LinearLayout>
 
@@ -155,7 +155,7 @@
             android:id="@+id/btnEquals"
             style="@style/buttonNumber"
             android:layout_weight="2"
-            android:background="@color/orange"
+            android:background="@color/blue"
             android:text="=" />
     </LinearLayout>
 

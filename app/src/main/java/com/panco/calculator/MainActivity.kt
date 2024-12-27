@@ -70,6 +70,10 @@ class MainActivity : AppCompatActivity() {
             populateInputs("9")
         }
 
+        binding.btnDecimal.setOnClickListener {
+            populateInputs(".")
+        }
+
         binding.btnCE.setOnClickListener {
             input1 = "0"
             input2 = "0"
