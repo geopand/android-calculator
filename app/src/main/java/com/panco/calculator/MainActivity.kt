@@ -75,8 +75,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnCE.setOnClickListener {
-            input1 = "0"
-            input2 = "0"
+            input1 = ""
+            input2 = ""
             isSecondInputActive = false
             clearInputScreen()
             clearResultScreen()
@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnEquals.setOnClickListener {
             input1 = calculateResult()
-            input2 = "0"
+            input2 = ""
             screenText = input1
             isSecondInputActive = false
             operation = ArithmeticOperation.NONE
@@ -146,7 +146,7 @@ class MainActivity : AppCompatActivity() {
     private fun executeLastOperation() {
         if (operation != ArithmeticOperation.NONE) {
             input1 = calculateResult()
-            input2 = "0"
+            input2 = ""
         }
     }
 
@@ -165,8 +165,8 @@ class MainActivity : AppCompatActivity() {
      * if the first input is empty.
      * Operations can only be entered after the first input is not empty
      */
-    private fun isValidToEnterOperation() : Boolean {
-        return !arrayOf("", "0").contains(input1)
+    private fun isValidToEnterOperation(): Boolean {
+        return !arrayOf("").contains(input1)
     }
 
     private fun concatToInputScreen(text: String) {
@@ -183,7 +183,7 @@ class MainActivity : AppCompatActivity() {
         binding.tvResult.text = ""
     }
 
-    private fun showInputScreen(text: String){
+    private fun showInputScreen(text: String) {
         binding.tvInput.text = text
     }
 
@@ -201,17 +201,25 @@ class MainActivity : AppCompatActivity() {
 
 
     /**
-     * If the string value is "0", this means that the previous input is zero so
-     * the new number must replace the value.
+     * If the string value is "0", we drop it from the screen and replace it with the value.
+     * If the string value is empty , we just replace it with the value.
      * If the string value is non-zero then this means the user wants to write a bigger number so we
      * we concatenate the previous value with the new value.
      */
     private fun concatOrSetIfZero(initial: String, newValue: String): String {
-        return if (initial.trim() == "0") {
+        return if (initial.trim().isEmpty()) {
+            newValue
+        } else if (initial.trim() == "0") {
+            dropLastZeroFromScreen()
             newValue
         } else {
             initial + newValue
         }
+    }
+
+    private fun dropLastZeroFromScreen() {
+        screenText = screenText.dropLast(1)
+        showInputScreen(screenText)
     }
 
 
