@@ -126,6 +126,20 @@ class MainActivity : AppCompatActivity() {
             operation = ArithmeticOperation.NONE
         }
 
+        binding.btnPlusMinus.setOnClickListener {
+            if (isValidToEnterOperation() && !isSecondInputActive) {
+                val firstChar: Char = input1.first()
+                if (firstChar == '-') {
+                    input1 = input1.drop(1)
+                } else {
+                    input1 = "-$input1"
+                }
+                screenText = input1
+                showInputScreen(input1)
+                clearResultScreen()
+            }
+        }
+
 
     }
 
@@ -146,6 +160,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * An arithmetic operation button is not valid and wont be taken into account
+     * if the first input is empty.
+     * Operations can only be entered after the first input is not empty
+     */
     private fun isValidToEnterOperation() : Boolean {
         return !arrayOf("", "0").contains(input1)
     }

@@ -20,24 +20,24 @@
 
         <TextView
             android:id="@+id/tvInput"
+            style="@style/tvInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="20dp"
             android:gravity="end"
             android:text=""
-            android:textSize="25sp"
-            style="@style/tvInput" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/tvResult"
+            style="@style/tvResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="end"
             android:text=""
-            android:textSize="25sp"
-            style="@style/tvResult"/>
+            android:textSize="25sp" />
     </LinearLayout>
     <!--    Row 1-->
 
@@ -53,8 +53,9 @@
             android:visibility="invisible" />
 
         <Button
-            style="@style/buttonNumber"
-            android:visibility="invisible" />
+            android:id="@+id/btnPlusMinus"
+            style="@style/buttonOperations"
+            android:text="+/-" />
 
         <Button
             android:id="@+id/btnDivide"
