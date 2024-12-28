@@ -145,8 +145,6 @@ class MainActivity : AppCompatActivity() {
                 clearResultScreen()
             }
         }
-
-
     }
 
     private fun executeLastOperation() {
@@ -158,10 +156,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun populateInputs(btnValue: String) {
         if (!isSecondInputActive) {
-            input1 = concatOrSetIfZero(input1, btnValue)
+            input1 = concatExistingValueOrReplaceIfEmpty(input1, btnValue)
             concatToInputScreen(btnValue)
         } else {
-            input2 = concatOrSetIfZero(input2, btnValue)
+            input2 = concatExistingValueOrReplaceIfEmpty(input2, btnValue)
             concatToInputScreen(btnValue)
         }
     }
@@ -205,14 +203,13 @@ class MainActivity : AppCompatActivity() {
         return resultStr
     }
 
-
     /**
      * If the string value is "0", we drop it from the screen and replace it with the value.
      * If the string value is empty , we just replace it with the value.
      * If the string value is non-zero then this means the user wants to write a bigger number so we
      * we concatenate the previous value with the new value.
      */
-    private fun concatOrSetIfZero(initial: String, newValue: String): String {
+    private fun concatExistingValueOrReplaceIfEmpty(initial: String, newValue: String): String {
         return if (initial.trim().isEmpty()) {
             newValue
         } else if (initial.trim() == "0") {
