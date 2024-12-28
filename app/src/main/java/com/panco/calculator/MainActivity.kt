@@ -71,7 +71,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnDecimal.setOnClickListener {
-            populateInputs(".")
+            if (!isSecondInputActive && input1 != "") {
+                input1 = "$input1."
+                concatToInputScreen(".")
+            } else if ( input2 != "") {
+                input2 =  "$input2."
+                concatToInputScreen(".")
+            }
         }
 
         binding.btnCE.setOnClickListener {
