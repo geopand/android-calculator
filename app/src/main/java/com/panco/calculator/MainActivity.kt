@@ -122,6 +122,7 @@ class MainActivity : AppCompatActivity() {
             input1 = calculateResult()
             input2 = "0"
             screenText = input1
+            isSecondInputActive = false
             operation = ArithmeticOperation.NONE
         }
 
