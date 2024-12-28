@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     private var input1: String = ""
     private var input2: String = ""
     private var operation: ArithmeticOperation = ArithmeticOperation.NONE
-    private var isFirstInputFilled: Boolean = false
+    private var isSecondInputActive: Boolean = false
     private var screenText: String = ""
 
 
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnCE.setOnClickListener {
             input1 = "0"
             input2 = "0"
-            isFirstInputFilled = false
+            isSecondInputActive = false
             clearInputScreen()
             clearResultScreen()
         }
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                 input2 = "0"
             }
             operation = ArithmeticOperation.ADDITION
-            isFirstInputFilled = true
+            isSecondInputActive = true
             concatToInputScreen(" + ")
         }
 
@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
                 input2 = "0"
             }
             operation = ArithmeticOperation.SUBSTRACTION
-            isFirstInputFilled = true
+            isSecondInputActive = true
             concatToInputScreen(" - ")
         }
 
@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity() {
                 input2 = "0"
             }
             operation = ArithmeticOperation.MULTIPLICATION
-            isFirstInputFilled = true
+            isSecondInputActive = true
             concatToInputScreen(" * ")
         }
 
@@ -118,7 +118,7 @@ class MainActivity : AppCompatActivity() {
                 input2 = "0"
             }
             operation = ArithmeticOperation.DIVISION
-            isFirstInputFilled = true
+            isSecondInputActive = true
             concatToInputScreen(" / ")
         }
 
@@ -133,7 +133,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun populateInputs(btnValue: String) {
-        if (!isFirstInputFilled) {
+        if (!isSecondInputActive) {
             input1 = concatOrSetIfZero(input1, btnValue)
             concatToInputScreen(btnValue)
         } else {
