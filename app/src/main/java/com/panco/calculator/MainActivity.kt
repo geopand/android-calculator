@@ -83,43 +83,39 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnPlus.setOnClickListener {
-            if (operation != ArithmeticOperation.NONE) {
-                input1 = calculateResult()
-                input2 = "0"
+            if (isValidToEnterOperation()) {
+                executeLastOperation()
+                operation = ArithmeticOperation.ADDITION
+                isSecondInputActive = true
+                concatToInputScreen(" + ")
             }
-            operation = ArithmeticOperation.ADDITION
-            isSecondInputActive = true
-            concatToInputScreen(" + ")
         }
 
         binding.btnMinus.setOnClickListener {
-            if (operation != ArithmeticOperation.NONE) {
-                input1 = calculateResult()
-                input2 = "0"
+            if (isValidToEnterOperation()) {
+                executeLastOperation()
+                operation = ArithmeticOperation.SUBSTRACTION
+                isSecondInputActive = true
+                concatToInputScreen(" - ")
             }
-            operation = ArithmeticOperation.SUBSTRACTION
-            isSecondInputActive = true
-            concatToInputScreen(" - ")
         }
 
         binding.btnMulti.setOnClickListener {
-            if (operation != ArithmeticOperation.NONE) {
-                input1 = calculateResult()
-                input2 = "0"
+            if (isValidToEnterOperation()) {
+                executeLastOperation()
+                operation = ArithmeticOperation.MULTIPLICATION
+                isSecondInputActive = true
+                concatToInputScreen(" * ")
             }
-            operation = ArithmeticOperation.MULTIPLICATION
-            isSecondInputActive = true
-            concatToInputScreen(" * ")
         }
 
         binding.btnDivide.setOnClickListener {
-            if (operation != ArithmeticOperation.NONE) {
-                input1 = calculateResult()
-                input2 = "0"
+            if (isValidToEnterOperation()) {
+                executeLastOperation()
+                operation = ArithmeticOperation.DIVISION
+                isSecondInputActive = true
+                concatToInputScreen(" / ")
             }
-            operation = ArithmeticOperation.DIVISION
-            isSecondInputActive = true
-            concatToInputScreen(" / ")
         }
 
         binding.btnEquals.setOnClickListener {
@@ -132,6 +128,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun executeLastOperation() {
+        if (operation != ArithmeticOperation.NONE) {
+            input1 = calculateResult()
+            input2 = "0"
+        }
+    }
+
     private fun populateInputs(btnValue: String) {
         if (!isSecondInputActive) {
             input1 = concatOrSetIfZero(input1, btnValue)
@@ -142,6 +145,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun isValidToEnterOperation() : Boolean {
+        return !arrayOf("", "0").contains(input1)
+    }
 
     private fun concatToInputScreen(text: String) {
         screenText += text
