@@ -84,7 +84,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnPlus.setOnClickListener {
             if (operation != ArithmeticOperation.NONE) {
-                calculateResult()
                 input1 = calculateResult()
                 input2 = "0"
             }
@@ -95,7 +94,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnMinus.setOnClickListener {
             if (operation != ArithmeticOperation.NONE) {
-                calculateResult()
                 input1 = calculateResult()
                 input2 = "0"
             }
@@ -106,7 +104,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnMulti.setOnClickListener {
             if (operation != ArithmeticOperation.NONE) {
-                calculateResult()
                 input1 = calculateResult()
                 input2 = "0"
             }
@@ -117,7 +114,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnDivide.setOnClickListener {
             if (operation != ArithmeticOperation.NONE) {
-                calculateResult()
                 input1 = calculateResult()
                 input2 = "0"
             }
@@ -158,18 +154,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clearResultScreen() {
-        showResultScreen("")
+        binding.tvResult.text = ""
     }
 
     private fun showInputScreen(text: String){
         binding.tvInput.text = text
     }
 
-    private fun showResultScreen(text: String){
-        binding.tvResult.text = text
-    }
-
-
+    /**
+     * Execute the last stored operation
+     * Clear the input text-view
+     * Show the result to the result text-view
+     */
     private fun calculateResult(): String {
         val resultStr: String = operation.apply(input1, input2)
         binding.tvInput.text = ""
@@ -178,6 +174,12 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    /**
+     * If the string value is "0", this means that the previous input is zero so
+     * the new number must replace the value.
+     * If the string value is non-zero then this means the user wants to write a bigger number so we
+     * we concatenate the previous value with the new value.
+     */
     private fun concatOrSetIfZero(initial: String, newValue: String): String {
         return if (initial.trim() == "0") {
             newValue
